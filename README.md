@@ -6,6 +6,10 @@ This is a simple application for generating study plan. Features included:<br/>
 - Add a subject
 - Generate your study plan (*to be constructed*)
 
+# Diagram
+## Database Entity Relationship Diagram
+![Database ERD](/diagram/ERD.png)
+
 # How to run the app
 ## Prerequisites
 - Java Development Kit (JDK) 13 or above
