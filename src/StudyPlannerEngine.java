@@ -1,6 +1,7 @@
 import java.io.File;
 import java.util.Scanner;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class StudyPlannerEngine {
     public static Scanner scan = new Scanner(System.in);
@@ -28,10 +29,26 @@ public class StudyPlannerEngine {
         System.out.printf("Enter your password: ");
         pass = scan.nextLine();
 
-        Profile profile = new Profile(uid, pass);
+        boolean success = false;
+        while (!success)
+        {
+            try
+            {
+                Profile profile = new Profile(uid, pass);
+                success = true;
+            }
+            catch (StudyPlannerException SPE)
+            {
+                System.out.println(SPE.getMessage());
+                System.out.printf("Enter your username: ");
+                uid = scan.nextLine();
+                System.out.printf("Enter your password: ");
+                pass = scan.nextLine();
+            }
+        }
         
         // DEBUG
-        profile.getQuery();;
+        // profile.getQuery();
 
         ConnectDB.closeConn();
     }

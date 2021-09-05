@@ -15,6 +15,11 @@ public class Profile implements ProfileInterface
     {
         // Check to database, throw exception if does not exist
         queryProfile(user);
+        if (userDB == null)
+        throw new StudyPlannerException("Username not exists. Please try again!");
+
+        if (!passDB.equals(pass))
+        throw new StudyPlannerException("Password does not match. Please try again!");
 
         this.user = user;
         this.pass = pass;
@@ -58,8 +63,6 @@ public class Profile implements ProfileInterface
         }
         catch(SQLException e)
         {
-            // if the error message is "out of memory",
-            // it probably means no database file is found
             System.err.println(e.getMessage());
         }
     }
