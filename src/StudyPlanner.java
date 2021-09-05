@@ -2,14 +2,13 @@ import java.sql.Connection;
 import java.util.Calendar;
 
 public class StudyPlanner {
-    private String user;
     private Calendar startTime;
     private Calendar endTime;
 
-    /*
-	 * A constructor for set the start time of the study to 9 am and the end
+    /**
+     * A constructor for set the start time of the study to 9 am and the end
 	 * time to 5 pm
-	 */
+     */
     public StudyPlanner(String user, String pass)
     {
         startTime = Calendar.getInstance();

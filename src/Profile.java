@@ -3,7 +3,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Profile implements ProfileInterface
+public class Profile
 {
     private String user;
     private String pass;
@@ -11,6 +11,12 @@ public class Profile implements ProfileInterface
     private String userDB;
     private String passDB;
 
+    /**
+     * Constructor for profile
+     * @param user String user from the user input
+     * @param pass String password from the user input
+     * @throws StudyPlannerException when credentials do not match db info
+     */
     public Profile(String user, String pass)
     {
         // Check to database, throw exception if does not exist
@@ -25,30 +31,43 @@ public class Profile implements ProfileInterface
         this.pass = pass;
     }
 
-    @Override
+    /**
+     * Return the user ID
+     * @return String UID
+     */
     public String getUID()
     {
         return user;
     }
 
-    @Override
+    /**
+     * This is just for debug for the user password
+     * @return String pass
+     */
     public String getPass()
     {
         return pass;
     }
 
-    @Override
+    /**
+     * This is just for debug in printing query information
+     */
     public void getQuery()
     {
         System.out.printf("uid: %s\n", userDB);
         System.out.printf("pass: %s\n", passDB);
     }
 
+    /**
+     * Helper method for querying profile to database
+     * @param user String UID
+     * @throws SQLException when query fails
+     */
     private void queryProfile(String user)
     {
         try
         {
-            Connection connection = ConnectDB.connect();
+            Connection connection = ConnectDB.getConnection();
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
